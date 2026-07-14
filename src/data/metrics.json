@@ -1,0 +1,654 @@
+{
+  "patient": {
+    "id": "PT-10234",
+    "firstName": "Margaret",
+    "lastName": "Chen",
+    "preferredName": "Maggie",
+    "age": 74,
+    "dateOfBirth": "1951-11-03",
+    "gender": "Female",
+    "phone": "(503) 555-0147",
+    "email": "m.chen74@gmail.com",
+    "address": "1842 NE Glisan St, Portland, OR 97232",
+    "insurance": "Medicare",
+    "memberId": "1EG4-TE5-MK72",
+    "primaryDiagnosis": "Congestive Heart Failure",
+    "profilePhoto": null
+  },
+
+  "caseOverview": {
+    "caseId": "CS-6001",
+    "status": "in-progress",
+    "statusLabel": "Active",
+    "openedDate": "2026-06-04",
+    "admissionDate": "2026-05-28",
+    "dischargeDate": "2026-06-04",
+    "estimatedCloseDate": "2026-07-04",
+    "lastUpdated": "2026-07-12T14:22:00",
+    "summary": "Post-discharge care management following hospitalization for congestive heart failure exacerbation. Monitoring medication adherence and daily weight.",
+    "nextAction": "Cardiology follow-up appointment",
+    "nextActionDate": "2026-07-16"
+  },
+
+  "careTeam": [
+    {
+      "id": "CT-001",
+      "name": "Gloria Kim",
+      "role": "Care Coordinator",
+      "department": "Care Management",
+      "facility": "Evergreen Health System",
+      "phone": "(503) 555-0312",
+      "email": "gloria.kim@evergreenhs.org",
+      "isPrimary": true,
+      "photo": null,
+      "preferredContact": "phone",
+      "availability": "Mon-Fri, 8am-5pm"
+    },
+    {
+      "id": "CT-002",
+      "name": "Dr. Anand Gupta",
+      "role": "Primary Care Provider",
+      "department": "Internal Medicine",
+      "facility": "Evergreen Health System",
+      "phone": "(503) 555-0298",
+      "email": null,
+      "isPrimary": false,
+      "photo": null,
+      "preferredContact": "portal",
+      "availability": "Mon-Thu, 9am-4pm"
+    },
+    {
+      "id": "CT-003",
+      "name": "Dr. Lisa Hernandez",
+      "role": "Cardiologist",
+      "department": "Cardiology",
+      "facility": "Evergreen Heart & Vascular",
+      "phone": "(503) 555-0415",
+      "email": "l.hernandez@evergreenhv.org",
+      "isPrimary": false,
+      "photo": null,
+      "preferredContact": "phone",
+      "availability": "Tue-Fri, 10am-3pm"
+    },
+    {
+      "id": "CT-004",
+      "name": "Rachel Odom, PharmD",
+      "role": "Clinical Pharmacist",
+      "department": "Pharmacy",
+      "facility": "Evergreen Health System",
+      "phone": "(503) 555-0388",
+      "email": null,
+      "isPrimary": false,
+      "photo": null,
+      "preferredContact": "phone",
+      "availability": ""
+    }
+  ],
+
+  "appointments": {
+    "upcoming": [
+      {
+        "id": "APT-1001",
+        "title": "Cardiology Follow-Up",
+        "provider": "Dr. Lisa Hernandez",
+        "type": "follow-up",
+        "date": "2026-07-16",
+        "startTime": "10:30",
+        "endTime": "11:00",
+        "location": "Evergreen Heart & Vascular, Suite 240",
+        "address": "3500 N Interstate Ave, Portland, OR 97227",
+        "instructions": "Bring current medication list. Wear loose-fitting clothing for possible echocardiogram. Arrive 15 minutes early.",
+        "telehealth": false,
+        "confirmed": true,
+        "reminderSent": true
+      },
+      {
+        "id": "APT-1002",
+        "title": "Care Plan Review",
+        "provider": "Gloria Kim",
+        "type": "care-plan-review",
+        "date": "2026-07-18",
+        "startTime": "14:00",
+        "endTime": "14:30",
+        "location": "Telehealth",
+        "address": null,
+        "instructions": "You will receive a video link via text message 10 minutes before the appointment.",
+        "telehealth": true,
+        "confirmed": false,
+        "reminderSent": false
+      },
+      {
+        "id": "APT-1003",
+        "title": "Lab Work - Metabolic Panel",
+        "provider": "Evergreen Lab Services",
+        "type": "lab",
+        "date": "2026-07-22",
+        "startTime": "08:00",
+        "endTime": "08:30",
+        "location": "Evergreen Outpatient Lab",
+        "address": "3500 N Interstate Ave, Portland, OR 97227",
+        "instructions": "Fasting required — no food or drink (except water) for 12 hours before appointment.",
+        "telehealth": false,
+        "confirmed": true,
+        "reminderSent": false
+      },
+      {
+        "id": "APT-1004",
+        "title": "PCP Check-In",
+        "provider": "Dr. Anand Gupta",
+        "type": "follow-up",
+        "date": "2026-07-30",
+        "startTime": "11:15",
+        "endTime": "11:45",
+        "location": "Evergreen Internal Medicine Clinic",
+        "address": "3500 N Interstate Ave, Bldg B, Portland, OR 97227",
+        "instructions": null,
+        "telehealth": false,
+        "confirmed": false,
+        "reminderSent": false
+      }
+    ],
+    "past": [
+      {
+        "id": "APT-0901",
+        "title": "Post-Discharge Follow-Up",
+        "provider": "Gloria Kim",
+        "type": "follow-up",
+        "date": "2026-06-17",
+        "startTime": "09:00",
+        "endTime": "09:30",
+        "location": "Telehealth",
+        "status": "completed",
+        "summary": "Reviewed discharge medications. Patient reports mild ankle swelling. Advised to elevate feet and continue monitoring weight."
+      },
+      {
+        "id": "APT-0902",
+        "title": "Cardiology Follow-Up",
+        "provider": "Dr. Lisa Hernandez",
+        "type": "follow-up",
+        "date": "2026-06-24",
+        "startTime": "10:00",
+        "endTime": "10:45",
+        "location": "Evergreen Heart & Vascular, Suite 240",
+        "status": "completed",
+        "summary": "Echocardiogram showed EF of 38%. Adjusted Entresto dosage. Advised low-sodium diet."
+      },
+      {
+        "id": "APT-0903",
+        "title": "Care Coordination Check-In",
+        "provider": "Gloria Kim",
+        "type": "care-plan-review",
+        "date": "2026-06-30",
+        "startTime": "09:00",
+        "endTime": "09:30",
+        "location": "Telehealth",
+        "status": "completed",
+        "summary": "Discussed blood pressure readings. Patient tracking weight daily. Transportation arranged for next cardiology visit."
+      },
+      {
+        "id": "APT-0904",
+        "title": "Lab Work",
+        "provider": "Evergreen Lab Services",
+        "type": "lab",
+        "date": "2026-07-07",
+        "startTime": "07:45",
+        "endTime": "08:00",
+        "location": "Evergreen Outpatient Lab",
+        "status": "completed",
+        "summary": null
+      },
+      {
+        "id": "APT-0905",
+        "title": "PCP Follow-Up",
+        "provider": "Dr. Anand Gupta",
+        "type": "follow-up",
+        "date": "2026-07-10",
+        "startTime": "13:30",
+        "endTime": "14:00",
+        "location": "Evergreen Internal Medicine Clinic",
+        "status": "completed",
+        "summary": "Blood sugar trending slightly high. Discussed diet adjustments. Kidney function stable."
+      }
+    ]
+  },
+
+  "tasks": [
+    {
+      "id": "TSK-301",
+      "title": "Confirm cardiology appointment",
+      "description": "Please confirm your July 16th appointment with Dr. Hernandez.",
+      "type": "confirm-appointment",
+      "priority": "high",
+      "dueDate": "2026-07-15",
+      "status": "pending",
+      "createdDate": "2026-07-10",
+      "assignedBy": "Gloria Kim"
+    },
+    {
+      "id": "TSK-302",
+      "title": "Record daily weight",
+      "description": "Weigh yourself each morning before eating and record the result.",
+      "type": "health-tracking",
+      "priority": "high",
+      "dueDate": null,
+      "status": "in-progress",
+      "createdDate": "2026-06-04",
+      "assignedBy": "Dr. Lisa Hernandez",
+      "recurring": true,
+      "recurrencePattern": "daily"
+    },
+    {
+      "id": "TSK-303",
+      "title": "Complete Heart Failure Education Module",
+      "description": "Review the educational materials about managing heart failure at home.",
+      "type": "education",
+      "priority": "medium",
+      "dueDate": "2026-07-18",
+      "status": "pending",
+      "createdDate": "2026-07-01",
+      "assignedBy": "Gloria Kim"
+    },
+    {
+      "id": "TSK-304",
+      "title": "Review and sign medication consent form",
+      "description": "Your care team has updated your medication plan. Please review and sign the updated consent.",
+      "type": "form",
+      "priority": "medium",
+      "dueDate": "2026-07-20",
+      "status": "pending",
+      "createdDate": "2026-07-08",
+      "assignedBy": "Rachel Odom, PharmD"
+    },
+    {
+      "id": "TSK-305",
+      "title": "Schedule follow-up with Dr. Gupta",
+      "description": "Please schedule your next visit with Dr. Gupta for late August.",
+      "type": "schedule-appointment",
+      "priority": "low",
+      "dueDate": "2026-07-31",
+      "status": "pending",
+      "createdDate": "2026-07-10",
+      "assignedBy": "Gloria Kim"
+    },
+    {
+      "id": "TSK-306",
+      "title": "Blood pressure check — AM and PM",
+      "description": "Take your blood pressure twice daily (morning and evening) and record the readings.",
+      "type": "health-tracking",
+      "priority": "high",
+      "dueDate": null,
+      "status": "in-progress",
+      "createdDate": "2026-06-24",
+      "assignedBy": "Dr. Lisa Hernandez",
+      "recurring": true,
+      "recurrencePattern": "daily"
+    },
+    {
+      "id": "TSK-290",
+      "title": "Fill updated prescriptions",
+      "description": "Pick up your updated prescriptions from your pharmacy. Your Entresto dosage has been adjusted.",
+      "type": "medication",
+      "priority": "high",
+      "dueDate": "2026-06-26",
+      "status": "completed",
+      "completedDate": "2026-06-25",
+      "createdDate": "2026-06-24",
+      "assignedBy": "Dr. Lisa Hernandez"
+    },
+    {
+      "id": "TSK-288",
+      "title": "Arrange transportation for cardiology visit",
+      "description": "Contact medical transport or arrange a ride for your June 24 cardiology appointment.",
+      "type": "logistics",
+      "priority": "high",
+      "dueDate": "2026-06-23",
+      "status": "completed",
+      "completedDate": "2026-06-22",
+      "createdDate": "2026-06-10",
+      "assignedBy": "Gloria Kim"
+    }
+  ],
+
+  "careGoals": [
+    {
+      "id": "CG-101",
+      "title": "Medication Adherence",
+      "description": "Take all prescribed medications on schedule, including Entresto, Metformin, and Lisinopril.",
+      "category": "medication",
+      "status": "in-progress",
+      "progress": 0.85,
+      "startDate": "2026-06-04",
+      "targetDate": "2026-07-04",
+      "milestones": [
+        { "label": "Set up pill organizer", "completed": true, "date": "2026-06-05" },
+        { "label": "Daughter trained on med schedule", "completed": true, "date": "2026-06-08" },
+        { "label": "7-day adherence streak", "completed": true, "date": "2026-06-15" },
+        { "label": "30-day adherence check", "completed": false, "date": null }
+      ]
+    },
+    {
+      "id": "CG-102",
+      "title": "Daily Weight Monitoring",
+      "description": "Weigh yourself every morning and report any gain of more than 2 lbs in a day or 5 lbs in a week.",
+      "category": "monitoring",
+      "status": "in-progress",
+      "progress": 0.72,
+      "startDate": "2026-06-04",
+      "targetDate": "2026-07-04",
+      "milestones": [
+        { "label": "Obtained home scale", "completed": true, "date": "2026-06-04" },
+        { "label": "First week recorded", "completed": true, "date": "2026-06-11" },
+        { "label": "Consistent 3-week tracking", "completed": true, "date": "2026-07-01" },
+        { "label": "Full month tracked", "completed": false, "date": null }
+      ]
+    },
+    {
+      "id": "CG-103",
+      "title": "Cardiology Follow-Up Within 7 Days",
+      "description": "Complete an initial cardiology visit within 7 days of hospital discharge.",
+      "category": "follow-up",
+      "status": "completed",
+      "progress": 1.0,
+      "startDate": "2026-06-04",
+      "targetDate": "2026-06-11",
+      "completedDate": "2026-06-10",
+      "milestones": [
+        { "label": "Appointment scheduled", "completed": true, "date": "2026-06-05" },
+        { "label": "Transportation arranged", "completed": true, "date": "2026-06-07" },
+        { "label": "Visit completed", "completed": true, "date": "2026-06-10" }
+      ]
+    },
+    {
+      "id": "CG-104",
+      "title": "Low-Sodium Diet Adoption",
+      "description": "Follow a low-sodium diet (less than 2,000 mg/day) to help manage fluid retention.",
+      "category": "lifestyle",
+      "status": "in-progress",
+      "progress": 0.4,
+      "startDate": "2026-06-24",
+      "targetDate": "2026-08-24",
+      "milestones": [
+        { "label": "Reviewed dietary guidelines", "completed": true, "date": "2026-06-26" },
+        { "label": "Met with nutritionist", "completed": false, "date": null },
+        { "label": "2-week food log completed", "completed": false, "date": null }
+      ]
+    },
+    {
+      "id": "CG-105",
+      "title": "Blood Pressure Stabilization",
+      "description": "Achieve consistent blood pressure readings below 140/90 mmHg.",
+      "category": "monitoring",
+      "status": "in-progress",
+      "progress": 0.55,
+      "startDate": "2026-06-04",
+      "targetDate": "2026-08-01",
+      "milestones": [
+        { "label": "Baseline readings recorded", "completed": true, "date": "2026-06-08" },
+        { "label": "Medication adjustment", "completed": true, "date": "2026-06-24" },
+        { "label": "7-day avg below 140/90", "completed": false, "date": null },
+        { "label": "30-day avg below 140/90", "completed": false, "date": null }
+      ]
+    }
+  ],
+
+  "documents": [
+    {
+      "id": "DOC-501",
+      "title": "Discharge Summary",
+      "type": "visit-summary",
+      "date": "2026-06-04",
+      "provider": "Evergreen Health System",
+      "fileType": "pdf",
+      "read": true
+    },
+    {
+      "id": "DOC-502",
+      "title": "Medication List — Updated July 2026",
+      "type": "care-plan",
+      "date": "2026-07-08",
+      "provider": "Rachel Odom, PharmD",
+      "fileType": "pdf",
+      "read": false
+    },
+    {
+      "id": "DOC-503",
+      "title": "Living with Heart Failure: A Patient Guide",
+      "type": "educational",
+      "date": "2026-06-04",
+      "provider": "Evergreen Health System",
+      "fileType": "pdf",
+      "read": true
+    },
+    {
+      "id": "DOC-504",
+      "title": "Low-Sodium Diet Guide",
+      "type": "educational",
+      "date": "2026-06-26",
+      "provider": "Evergreen Nutrition Services",
+      "fileType": "pdf",
+      "read": false
+    },
+    {
+      "id": "DOC-505",
+      "title": "Echocardiogram Results — June 24",
+      "type": "lab-results",
+      "date": "2026-06-25",
+      "provider": "Dr. Lisa Hernandez",
+      "fileType": "pdf",
+      "read": true
+    },
+    {
+      "id": "DOC-506",
+      "title": "Lab Results — Metabolic Panel July 7",
+      "type": "lab-results",
+      "date": "2026-07-08",
+      "provider": "Evergreen Lab Services",
+      "fileType": "pdf",
+      "read": false
+    },
+    {
+      "id": "DOC-507",
+      "title": "Care Plan Overview",
+      "type": "care-plan",
+      "date": "2026-06-06",
+      "provider": "Gloria Kim",
+      "fileType": "pdf",
+      "read": true
+    },
+    {
+      "id": "DOC-508",
+      "title": "Medication Consent Form",
+      "type": "form",
+      "date": "2026-07-08",
+      "provider": "Rachel Odom, PharmD",
+      "fileType": "pdf",
+      "read": false
+    }
+  ],
+
+  "notifications": [
+    {
+      "id": "NTF-801",
+      "type": "appointment-reminder",
+      "title": "Upcoming Appointment",
+      "message": "You have a cardiology follow-up with Dr. Hernandez on July 16 at 10:30 AM.",
+      "timestamp": "2026-07-14T08:00:00",
+      "read": false,
+      "actionType": "view-appointment",
+      "referenceId": "APT-1001"
+    },
+    {
+      "id": "NTF-802",
+      "type": "task",
+      "title": "Action Needed",
+      "message": "Please confirm your July 16 cardiology appointment.",
+      "timestamp": "2026-07-13T10:15:00",
+      "read": false,
+      "actionType": "view-task",
+      "referenceId": "TSK-301"
+    },
+    {
+      "id": "NTF-803",
+      "type": "document",
+      "title": "New Document Available",
+      "message": "Your updated medication list has been posted.",
+      "timestamp": "2026-07-08T16:42:00",
+      "read": true,
+      "actionType": "view-document",
+      "referenceId": "DOC-502"
+    },
+    {
+      "id": "NTF-804",
+      "type": "care-plan-update",
+      "title": "Care Plan Updated",
+      "message": "Your care goals have been reviewed. A new dietary goal has been added.",
+      "timestamp": "2026-07-01T11:30:00",
+      "read": true,
+      "actionType": "view-goals",
+      "referenceId": "CG-104"
+    },
+    {
+      "id": "NTF-805",
+      "type": "message",
+      "title": "New Message from Gloria Kim",
+      "message": "Gloria Kim sent you a message about your upcoming appointments.",
+      "timestamp": "2026-07-12T14:22:00",
+      "read": false,
+      "actionType": "view-messages",
+      "referenceId": "MSG-101"
+    },
+    {
+      "id": "NTF-806",
+      "type": "lab-results",
+      "title": "Lab Results Available",
+      "message": "Your metabolic panel results from July 7 are now available.",
+      "timestamp": "2026-07-08T09:10:00",
+      "read": false,
+      "actionType": "view-document",
+      "referenceId": "DOC-506"
+    },
+    {
+      "id": "NTF-807",
+      "type": "task",
+      "title": "New Task Assigned",
+      "message": "Rachel Odom has asked you to review and sign an updated medication consent form.",
+      "timestamp": "2026-07-08T15:55:00",
+      "read": true,
+      "actionType": "view-task",
+      "referenceId": "TSK-304"
+    }
+  ],
+
+  "messages": [
+    {
+      "id": "MSG-101",
+      "contactName": "Gloria Kim",
+      "contactRole": "Care Coordinator",
+      "unread": true,
+      "lastMessagePreview": "Hi Maggie, just checking in — were you able to arrange a ride for your cardiology appointment on the 16th?",
+      "lastMessageTime": "2026-07-12T14:22:00",
+      "thread": [
+        {
+          "id": "m1",
+          "sender": "patient",
+          "text": "Hi Gloria, I wanted to let you know my blood pressure was 148/92 this morning. Should I be concerned?",
+          "timestamp": "2026-06-30T08:45:00"
+        },
+        {
+          "id": "m2",
+          "sender": "coordinator",
+          "text": "Thanks for letting me know, Maggie. That is a bit elevated. Have you been taking your Lisinopril as prescribed? Also, how has your sodium intake been this week?",
+          "timestamp": "2026-06-30T09:12:00"
+        },
+        {
+          "id": "m3",
+          "sender": "patient",
+          "text": "Yes I've been taking it every morning. I did have some canned soup yesterday, maybe that was too much salt?",
+          "timestamp": "2026-06-30T09:30:00"
+        },
+        {
+          "id": "m4",
+          "sender": "coordinator",
+          "text": "That could definitely be a factor. Canned soups tend to be very high in sodium. Try to stick with fresh or low-sodium options. I'll mention the reading to Dr. Hernandez. If it stays above 150/95, please call us right away.",
+          "timestamp": "2026-06-30T09:48:00"
+        },
+        {
+          "id": "m5",
+          "sender": "coordinator",
+          "text": "Hi Maggie, just checking in — were you able to arrange a ride for your cardiology appointment on the 16th?",
+          "timestamp": "2026-07-12T14:22:00"
+        }
+      ]
+    },
+    {
+      "id": "MSG-102",
+      "contactName": "Dr. Anand Gupta's Office",
+      "contactRole": "Primary Care Provider",
+      "unread": false,
+      "lastMessagePreview": "Your lab results from July 7 have been reviewed. Everything looks stable. We'll discuss more at your next visit.",
+      "lastMessageTime": "2026-07-10T11:05:00",
+      "thread": [
+        {
+          "id": "m6",
+          "sender": "provider",
+          "text": "Hi Margaret, this is Dr. Gupta's office. Just a reminder that your lab work is scheduled for July 7 at 8 AM. Please remember to fast starting the night before.",
+          "timestamp": "2026-07-05T10:00:00"
+        },
+        {
+          "id": "m7",
+          "sender": "patient",
+          "text": "Thank you for the reminder. I'll be there.",
+          "timestamp": "2026-07-05T12:18:00"
+        },
+        {
+          "id": "m8",
+          "sender": "provider",
+          "text": "Your lab results from July 7 have been reviewed. Everything looks stable. We'll discuss more at your next visit.",
+          "timestamp": "2026-07-10T11:05:00"
+        }
+      ]
+    }
+  ],
+
+  "healthTracking": {
+    "weight": {
+      "unit": "lbs",
+      "entries": [
+        { "date": "2026-07-14", "value": 158.2 },
+        { "date": "2026-07-13", "value": 157.8 },
+        { "date": "2026-07-12", "value": 158.0 },
+        { "date": "2026-07-11", "value": null },
+        { "date": "2026-07-10", "value": 157.4 },
+        { "date": "2026-07-09", "value": 157.6 },
+        { "date": "2026-07-08", "value": 159.1 },
+        { "date": "2026-07-07", "value": 158.5 },
+        { "date": "2026-07-06", "value": 158.8 },
+        { "date": "2026-07-05", "value": 157.2 },
+        { "date": "2026-07-04", "value": null },
+        { "date": "2026-07-03", "value": 157.0 },
+        { "date": "2026-07-02", "value": 156.8 },
+        { "date": "2026-07-01", "value": 156.5 }
+      ]
+    },
+    "bloodPressure": {
+      "entries": [
+        { "date": "2026-07-14", "systolic": 142, "diastolic": 88, "timeOfDay": "AM" },
+        { "date": "2026-07-13", "systolic": 138, "diastolic": 85, "timeOfDay": "AM" },
+        { "date": "2026-07-13", "systolic": 144, "diastolic": 90, "timeOfDay": "PM" },
+        { "date": "2026-07-12", "systolic": 146, "diastolic": 91, "timeOfDay": "AM" },
+        { "date": "2026-07-11", "systolic": 140, "diastolic": 87, "timeOfDay": "AM" },
+        { "date": "2026-07-10", "systolic": 136, "diastolic": 84, "timeOfDay": "AM" },
+        { "date": "2026-07-10", "systolic": 141, "diastolic": 89, "timeOfDay": "PM" },
+        { "date": "2026-07-09", "systolic": 139, "diastolic": 86, "timeOfDay": "AM" },
+        { "date": "2026-07-08", "systolic": 148, "diastolic": 93, "timeOfDay": "AM" },
+        { "date": "2026-07-07", "systolic": 145, "diastolic": 90, "timeOfDay": "AM" },
+        { "date": "2026-07-06", "systolic": 143, "diastolic": 88, "timeOfDay": "AM" },
+        { "date": "2026-07-05", "systolic": 137, "diastolic": 85, "timeOfDay": "AM" },
+        { "date": "2026-07-04", "systolic": 150, "diastolic": 94, "timeOfDay": "AM" },
+        { "date": "2026-07-03", "systolic": 148, "diastolic": 92, "timeOfDay": "AM" },
+        { "date": "2026-07-02", "systolic": 144, "diastolic": 90, "timeOfDay": "AM" },
+        { "date": "2026-07-01", "systolic": 146, "diastolic": 91, "timeOfDay": "AM" }
+      ]
+    }
+  }
+}

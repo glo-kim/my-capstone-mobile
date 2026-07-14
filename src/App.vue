@@ -1,5 +1,16 @@
 <template>
   <v-app>
+    <v-app-bar flat class="app-top-bar" density="compact">
+      <div class="app-logo-group">
+        <v-icon size="20" color="white">mdi-heart-pulse</v-icon>
+        <span class="app-logo-text">Evergreen Health</span>
+      </div>
+      <v-spacer />
+      <v-avatar size="32" color="#1A6B52" class="app-avatar" @click="$router.push('/profile')">
+        <span class="text-white text-caption font-weight-bold">MC</span>
+      </v-avatar>
+    </v-app-bar>
+
     <v-main class="bg-background app-content">
       <router-view />
     </v-main>
@@ -33,10 +44,6 @@
         <span>Messages</span>
       </v-btn>
 
-      <v-btn value="/profile" @click="$router.push('/profile')">
-        <v-icon>mdi-account-outline</v-icon>
-        <span>Profile</span>
-      </v-btn>
     </v-bottom-navigation>
   </v-app>
 </template>
@@ -59,6 +66,29 @@ const unreadCount = computed(() =>
 </script>
 
 <style scoped>
+.app-top-bar {
+  background-color: #0D4F3C !important;
+}
+
+.app-logo-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: 12px;
+}
+
+.app-logo-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+}
+
+.app-avatar {
+  margin-right: 12px;
+  cursor: pointer;
+}
+
 .v-bottom-navigation {
   border-top: 1px solid rgb(var(--v-theme-outline-variant));
 }

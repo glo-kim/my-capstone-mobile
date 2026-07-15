@@ -56,6 +56,37 @@ body {
   padding: 0 !important;
 }
 
+/* List item leading icon gap — match appointment card spacing */
+.v-list-item__prepend {
+  margin-inline-end: 12px !important;
+  padding-inline-end: 0 !important;
+  padding-inline-start: 0 !important;
+  width: auto !important;
+  min-width: 0 !important;
+  flex-shrink: 0 !important;
+  align-items: flex-start !important;
+  gap: 0 !important;
+}
+
+.v-list-item__prepend > .v-icon {
+  margin-inline-end: 0 !important;
+  margin-inline-start: 0 !important;
+}
+
+.v-list-item__spacer {
+  display: none !important;
+}
+
+.v-list-item {
+  column-gap: 0 !important;
+  padding-inline-start: 0 !important;
+  padding-inline-end: 0 !important;
+  gap: 0 !important;
+  align-items: flex-start !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
 /* MD3 Elevation */
 .elevation-1 {
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1),

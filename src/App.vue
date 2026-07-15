@@ -6,9 +6,43 @@
         <span class="app-logo-text">Evergreen Health</span>
       </div>
       <v-spacer />
-      <v-avatar size="32" color="#1A6B52" class="app-avatar" @click="$router.push('/profile')">
-        <span class="text-white text-caption font-weight-bold">MC</span>
-      </v-avatar>
+      <div class="d-flex align-center" style="gap: 16px">
+        <v-menu v-model="notifMenu" :close-on-content-click="false" location="bottom end" offset="8">
+          <template #activator="{ props }">
+            <v-btn icon variant="text" size="small" v-bind="props">
+              <v-badge v-if="unreadNotifCount > 0" :content="unreadNotifCount" color="error" floating offset-x="2" offset-y="2">
+                <v-icon size="20" color="white">mdi-bell-outline</v-icon>
+              </v-badge>
+              <v-icon v-else size="20" color="white">mdi-bell-outline</v-icon>
+            </v-btn>
+          </template>
+          <v-card min-width="320" max-width="360" class="pa-4">
+            <p class="text-title-medium text-on-surface mb-3">Updates</p>
+            <v-list density="compact" class="pa-0 bg-transparent">
+              <v-list-item
+                v-for="notif in recentNotifications"
+                :key="notif.id"
+                class="px-0"
+              >
+                <template #prepend>
+                  <v-icon :color="getNotifColor(notif.type)" size="20">
+                    {{ getNotifIcon(notif.type) }}
+                  </v-icon>
+                </template>
+                <v-list-item-title class="text-body-medium" :class="{ 'font-weight-medium': !notif.read }">
+                  {{ notif.message }}
+                </v-list-item-title>
+                <v-list-item-subtitle class="text-body-small">
+                  {{ formatRelativeTime(notif.timestamp) }}
+                </v-list-item-subtitle>
+              </v-list-item>
+            </v-list>
+          </v-card>
+        </v-menu>
+        <v-avatar size="32" color="#1A6B52" class="app-avatar" @click="$router.push('/profile')">
+          <span class="text-white text-caption font-weight-bold">MC</span>
+        </v-avatar>
+      </div>
     </v-app-bar>
 
     <v-main class="bg-background app-content">
@@ -66,11 +100,63 @@ watch(() => route.path, (path) => {
 const unreadCount = computed(() =>
   data.messages.filter(m => m.unread).length
 )
+
+const notifMenu = ref(false)
+
+const recentNotifications = computed(() =>
+  [...data.notifications]
+    .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+    .slice(0, 4)
+)
+
+const unreadNotifCount = computed(() =>
+  data.notifications.filter(n => !n.read).length
+)
+
+function formatRelativeTime(timestamp: string): string {
+  const now = new Date()
+  const then = new Date(timestamp)
+  const diffMs = now.getTime() - then.getTime()
+  const diffMin = Math.floor(diffMs / 60000)
+  if (diffMin < 1) return 'Just now'
+  if (diffMin < 60) return `${diffMin} min ago`
+  const diffHr = Math.floor(diffMin / 60)
+  if (diffHr < 24) return `${diffHr} hr ago`
+  const diffDay = Math.floor(diffHr / 24)
+  if (diffDay === 1) return 'Yesterday'
+  if (diffDay < 7) return `${diffDay} days ago`
+  return then.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+}
+
+function getNotifIcon(type: string): string {
+  const icons: Record<string, string> = {
+    'appointment-reminder': 'mdi-calendar-alert',
+    'task': 'mdi-checkbox-marked-circle-outline',
+    'document': 'mdi-file-document-outline',
+    'care-plan-update': 'mdi-heart-pulse',
+    'message': 'mdi-message-outline',
+    'lab-results': 'mdi-flask-outline',
+  }
+  return icons[type] || 'mdi-bell-outline'
+}
+
+function getNotifColor(type: string): string {
+  const colors: Record<string, string> = {
+    'appointment-reminder': 'warning',
+    'task': 'primary',
+    'document': 'info',
+    'care-plan-update': 'success',
+    'message': 'primary',
+    'lab-results': 'info',
+  }
+  return colors[type] || 'on-surface-variant'
+}
 </script>
 
 <style scoped>
 .app-top-bar {
   background-color: #0D4F3C !important;
+  padding-top: 8px !important;
 }
 
 .app-logo-group {

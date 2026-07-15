@@ -52,7 +52,7 @@
         </div>
         <v-list density="compact" class="pa-0 bg-transparent">
           <v-list-item
-            v-for="task in pendingTasks.slice(0, 3)"
+            v-for="task in pendingTasks"
             :key="task.id"
             class="px-0"
           >
@@ -60,7 +60,6 @@
               <v-icon
                 :color="task.priority === 'high' ? 'error' : task.priority === 'medium' ? 'warning' : 'on-surface-variant'"
                 size="20"
-                class="mr-3"
               >
                 {{ task.priority === 'high' ? 'mdi-alert-circle' : 'mdi-checkbox-blank-circle-outline' }}
               </v-icon>
@@ -71,15 +70,6 @@
             </v-list-item-subtitle>
           </v-list-item>
         </v-list>
-        <v-btn
-          v-if="pendingTasks.length > 3"
-          variant="text"
-          color="primary"
-          size="small"
-          class="mt-2 px-0"
-        >
-          View all {{ pendingTasks.length }} tasks
-        </v-btn>
       </v-card>
 
       <!-- Care Snapshot -->
@@ -126,29 +116,7 @@
         </div>
       </v-card>
 
-      <!-- Recent Notifications -->
-      <v-card class="pa-4">
-        <p class="text-title-medium text-on-surface mb-3">Updates</p>
-        <v-list density="compact" class="pa-0 bg-transparent">
-          <v-list-item
-            v-for="notif in recentNotifications"
-            :key="notif.id"
-            class="px-0"
-          >
-            <template #prepend>
-              <v-icon :color="getNotifColor(notif.type)" size="20" class="mr-3">
-                {{ getNotifIcon(notif.type) }}
-              </v-icon>
-            </template>
-            <v-list-item-title class="text-body-medium" :class="{ 'font-weight-medium': !notif.read }">
-              {{ notif.message }}
-            </v-list-item-title>
-            <v-list-item-subtitle class="text-body-small">
-              {{ formatRelativeTime(notif.timestamp) }}
-            </v-list-item-subtitle>
-          </v-list-item>
-        </v-list>
-      </v-card>
+
     </div>
   </div>
 </template>
@@ -174,12 +142,6 @@ const activeGoals = computed(() =>
   data.careGoals.filter(g => g.status === 'in-progress')
 )
 
-const recentNotifications = computed(() =>
-  [...data.notifications]
-    .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
-    .slice(0, 4)
-)
-
 function getInitials(name: string): string {
   return name.split(' ').map(n => n[0]).filter(c => c && c === c.toUpperCase()).join('').slice(0, 2)
 }
@@ -196,45 +158,6 @@ function formatTime(time: string | undefined): string {
   const period = h >= 12 ? 'PM' : 'AM'
   const hour = h % 12 || 12
   return `${hour}:${m.toString().padStart(2, '0')} ${period}`
-}
-
-function formatRelativeTime(timestamp: string): string {
-  const now = new Date()
-  const then = new Date(timestamp)
-  const diffMs = now.getTime() - then.getTime()
-  const diffMin = Math.floor(diffMs / 60000)
-  if (diffMin < 1) return 'Just now'
-  if (diffMin < 60) return `${diffMin} min ago`
-  const diffHr = Math.floor(diffMin / 60)
-  if (diffHr < 24) return `${diffHr} hr ago`
-  const diffDay = Math.floor(diffHr / 24)
-  if (diffDay === 1) return 'Yesterday'
-  if (diffDay < 7) return `${diffDay} days ago`
-  return then.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
-}
-
-function getNotifIcon(type: string): string {
-  const icons: Record<string, string> = {
-    'appointment-reminder': 'mdi-calendar-alert',
-    'task': 'mdi-checkbox-marked-circle-outline',
-    'document': 'mdi-file-document-outline',
-    'care-plan-update': 'mdi-heart-pulse',
-    'message': 'mdi-message-outline',
-    'lab-results': 'mdi-flask-outline',
-  }
-  return icons[type] || 'mdi-bell-outline'
-}
-
-function getNotifColor(type: string): string {
-  const colors: Record<string, string> = {
-    'appointment-reminder': 'info',
-    'task': 'warning',
-    'document': 'primary',
-    'care-plan-update': 'success',
-    'message': 'primary',
-    'lab-results': 'info',
-  }
-  return colors[type] || 'on-surface-variant'
 }
 </script>
 

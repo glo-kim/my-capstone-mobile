@@ -79,13 +79,16 @@
         </v-btn>
       </v-card>
 
-      <!-- Care Goals Snapshot -->
-      <v-card class="pa-4" @click="$router.push('/care-plan')">
+      <!-- Care Snapshot -->
+      <v-card class="pa-4">
         <div class="d-flex align-center justify-space-between mb-3">
-          <p class="text-title-medium text-on-surface">Care Goals</p>
-          <v-icon color="on-surface-variant" size="20">mdi-chevron-right</v-icon>
+          <p class="text-title-medium text-on-surface">Care Snapshot</p>
+          <v-icon color="on-surface-variant" size="20" @click="$router.push('/care-plan')">mdi-chevron-right</v-icon>
         </div>
-        <div class="d-flex flex-column ga-3">
+
+        <!-- Care Goals -->
+        <p class="text-label-large text-on-surface-variant mb-2">Goals</p>
+        <div class="d-flex flex-column ga-3 mb-4">
           <div v-for="goal in activeGoals.slice(0, 3)" :key="goal.id">
             <div class="d-flex align-center justify-space-between mb-1">
               <span class="text-body-small text-on-surface">{{ goal.title }}</span>
@@ -98,11 +101,10 @@
             />
           </div>
         </div>
-      </v-card>
 
-      <!-- Care Team -->
-      <v-card class="pa-4">
-        <p class="text-title-medium text-on-surface mb-3">Your Care Team</p>
+        <!-- Care Team -->
+        <v-divider class="mb-3" />
+        <p class="text-label-large text-on-surface-variant mb-2">Your Care Team</p>
         <div class="d-flex ga-4 overflow-x-auto">
           <div
             v-for="member in data.careTeam.slice(0, 3)"

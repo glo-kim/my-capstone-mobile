@@ -11,7 +11,7 @@
       <!-- Tab toggle -->
       <v-btn-toggle v-model="tab" mandatory color="primary" density="compact" class="mb-4" rounded="pill">
         <v-btn value="goals" size="small">Goals</v-btn>
-        <v-btn value="tasks" size="small">Tasks</v-btn>
+        <v-btn value="tasks" size="small">To Do</v-btn>
         <v-btn value="documents" size="small">Documents</v-btn>
       </v-btn-toggle>
 

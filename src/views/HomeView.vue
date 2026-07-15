@@ -44,76 +44,82 @@
         </div>
       </v-card>
 
-      <!-- Tasks Needing Attention -->
-      <v-card class="pa-4">
-        <div class="d-flex align-center justify-space-between mb-3">
-          <p class="text-title-medium text-on-surface">To Do</p>
-          <v-chip size="x-small" color="error" variant="tonal">{{ pendingTasks.length }}</v-chip>
-        </div>
-        <v-list density="compact" class="pa-0 bg-transparent">
-          <v-list-item
-            v-for="task in pendingTasks"
-            :key="task.id"
-            class="px-0"
-          >
-            <template #prepend>
-              <v-icon
-                :color="task.priority === 'high' ? 'error' : task.priority === 'medium' ? 'warning' : 'on-surface-variant'"
-                size="20"
-              >
-                {{ task.priority === 'high' ? 'mdi-alert-circle' : 'mdi-checkbox-blank-circle-outline' }}
-              </v-icon>
-            </template>
-            <v-list-item-title class="text-body-medium">{{ task.title }}</v-list-item-title>
-            <v-list-item-subtitle v-if="task.dueDate" class="text-body-small">
-              Due {{ formatDate(task.dueDate) }}
-            </v-list-item-subtitle>
-          </v-list-item>
-        </v-list>
-      </v-card>
-
-      <!-- Care Snapshot -->
+      <!-- Care Snapshot with Tabs -->
       <v-card class="pa-4">
         <div class="d-flex align-center justify-space-between mb-3">
           <p class="text-title-medium text-on-surface">Care Snapshot</p>
           <v-icon color="on-surface-variant" size="20" @click="$router.push('/care-plan')">mdi-chevron-right</v-icon>
         </div>
 
-        <!-- Care Goals -->
-        <p class="text-label-large text-on-surface-variant mb-2">Goals</p>
-        <div class="d-flex flex-column ga-3 mb-4">
-          <div v-for="goal in activeGoals.slice(0, 3)" :key="goal.id">
-            <div class="d-flex align-center justify-space-between mb-1">
-              <span class="text-body-small text-on-surface">{{ goal.title }}</span>
-              <span class="text-label-small text-on-surface-variant">{{ Math.round(goal.progress * 100) }}%</span>
-            </div>
-            <v-progress-linear
-              :model-value="goal.progress * 100"
-              :color="goal.progress >= 0.7 ? 'success' : goal.progress >= 0.5 ? 'warning' : 'error'"
-              height="6"
-            />
-          </div>
-        </div>
+        <v-tabs v-model="careTab" density="compact" color="primary" class="mb-3">
+          <v-tab value="todo">To Do
+            <v-chip size="x-small" color="error" variant="tonal" class="ml-2">{{ pendingTasks.length }}</v-chip>
+          </v-tab>
+          <v-tab value="goals">Goals</v-tab>
+        </v-tabs>
 
-        <!-- Care Team -->
-        <v-divider class="mb-3" />
-        <p class="text-label-large text-on-surface-variant mb-2">Your Care Team</p>
-        <div class="d-flex ga-4 overflow-x-auto">
-          <div
-            v-for="member in data.careTeam.slice(0, 3)"
-            :key="member.id"
-            class="text-center"
-            style="min-width: 72px"
-          >
-            <v-avatar :color="member.isPrimary ? 'primary' : 'secondary-container'" size="44" class="mb-1">
-              <span class="text-body-small" :class="member.isPrimary ? 'text-white' : 'text-on-secondary-container'">
-                {{ getInitials(member.name) }}
-              </span>
-            </v-avatar>
-            <p class="text-body-small text-on-surface" style="line-height: 1.2">{{ member.name.split(' ').pop() }}</p>
-            <p class="text-caption text-on-surface-variant" style="font-size: 0.625rem">{{ member.role.split(' ')[0] }}</p>
-          </div>
-        </div>
+        <v-window v-model="careTab">
+          <!-- To Do Tab -->
+          <v-window-item value="todo">
+            <v-list density="compact" class="pa-0 bg-transparent">
+              <v-list-item
+                v-for="task in pendingTasks"
+                :key="task.id"
+                class="px-0"
+              >
+                <template #prepend>
+                  <v-icon
+                    :color="task.priority === 'high' ? 'error' : task.priority === 'medium' ? 'warning' : 'on-surface-variant'"
+                    size="20"
+                  >
+                    {{ task.priority === 'high' ? 'mdi-alert-circle' : 'mdi-checkbox-blank-circle-outline' }}
+                  </v-icon>
+                </template>
+                <v-list-item-title class="text-body-medium">{{ task.title }}</v-list-item-title>
+                <v-list-item-subtitle v-if="task.dueDate" class="text-body-small">
+                  Due {{ formatDate(task.dueDate) }}
+                </v-list-item-subtitle>
+              </v-list-item>
+            </v-list>
+          </v-window-item>
+
+          <!-- Goals Tab -->
+          <v-window-item value="goals">
+            <div class="d-flex flex-column ga-6 mb-4">
+              <div v-for="goal in activeGoals.slice(0, 3)" :key="goal.id">
+                <div class="d-flex align-center justify-space-between mb-1">
+                  <span class="text-body-small text-on-surface">{{ goal.title }}</span>
+                  <span class="text-label-small text-on-surface-variant">{{ Math.round(goal.progress * 100) }}%</span>
+                </div>
+                <v-progress-linear
+                  :model-value="goal.progress * 100"
+                  :color="goal.progress >= 0.7 ? 'success' : goal.progress >= 0.5 ? 'warning' : 'error'"
+                  height="6"
+                />
+              </div>
+            </div>
+
+            <!-- Care Team -->
+            <v-divider class="my-3" />
+            <div class="mb-3"><p class="text-label-large text-on-surface-variant">Your Care Team</p></div>
+            <div class="d-flex ga-4 overflow-x-auto">
+              <div
+                v-for="member in data.careTeam.slice(0, 3)"
+                :key="member.id"
+                class="text-center"
+                style="min-width: 72px"
+              >
+                <v-avatar :color="member.isPrimary ? 'primary' : 'secondary-container'" size="44" class="mb-1">
+                  <span class="text-body-small" :class="member.isPrimary ? 'text-white' : 'text-on-secondary-container'">
+                    {{ getInitials(member.name) }}
+                  </span>
+                </v-avatar>
+                <p class="text-body-small text-on-surface" style="line-height: 1.2">{{ member.name.split(' ').pop() }}</p>
+                <p class="text-caption text-on-surface-variant" style="font-size: 0.625rem">{{ member.role.split(' ')[0] }}</p>
+              </div>
+            </div>
+          </v-window-item>
+        </v-window>
       </v-card>
 
 
@@ -122,8 +128,10 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import data from '../data/metrics.json'
+
+const careTab = ref('todo')
 
 const greeting = computed(() => {
   const hour = new Date().getHours()

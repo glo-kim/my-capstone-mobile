@@ -29,7 +29,7 @@
               <div class="d-flex align-center ga-1 mt-1">
                 <v-icon size="14" color="on-surface-variant">mdi-calendar</v-icon>
                 <span class="text-body-small text-on-surface-variant">
-                  {{ formatDate(apt.date) }} · {{ apt.startTime }}
+                  {{ formatDate(apt.date) }} · {{ formatTime(apt.startTime) }}
                 </span>
               </div>
               <div class="d-flex align-center ga-1 mt-1">
@@ -105,7 +105,7 @@
           </div>
           <div v-if="selectedApt.startTime" class="d-flex align-center ga-3">
             <v-icon color="on-surface-variant" size="20">mdi-clock-outline</v-icon>
-            <span class="text-body-medium">{{ selectedApt.startTime }} – {{ selectedApt.endTime }}</span>
+            <span class="text-body-medium">{{ formatTime(selectedApt.startTime) }} – {{ formatTime(selectedApt.endTime) }}</span>
           </div>
           <div class="d-flex align-center ga-3">
             <v-icon color="on-surface-variant" size="20">{{ selectedApt.telehealth ? 'mdi-video-outline' : 'mdi-map-marker-outline' }}</v-icon>
@@ -160,6 +160,14 @@ const sortedPast = computed(() =>
 function formatDate(dateStr: string): string {
   const d = new Date(dateStr + 'T00:00:00')
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
+}
+
+function formatTime(time: string): string {
+  if (!time) return ''
+  const [h, m] = time.split(':').map(Number)
+  const period = h >= 12 ? 'PM' : 'AM'
+  const hour = h % 12 || 12
+  return `${hour}:${m.toString().padStart(2, '0')} ${period}`
 }
 
 function formatDateLong(dateStr: string): string {

@@ -26,18 +26,21 @@
 
       <!-- Next Appointment -->
       <v-card class="pa-4" @click="$router.push('/appointments')">
-        <div class="d-flex align-center ga-3">
+        <div class="d-flex align-center justify-space-between mb-3">
+          <p class="text-title-medium text-on-surface">Upcoming Appointments</p>
+          <v-icon color="on-surface-variant" size="20">mdi-chevron-right</v-icon>
+        </div>
+        <div class="d-flex align-start ga-3">
           <v-avatar color="primary-container" size="44">
             <v-icon color="primary" size="22">mdi-calendar-clock</v-icon>
           </v-avatar>
           <div class="flex-grow-1">
-            <p class="text-label-large text-on-surface">{{ nextAppointment?.title }}</p>
-            <p class="text-body-small text-on-surface-variant">
-              {{ formatDate(nextAppointment?.date) }} · {{ nextAppointment?.startTime }}
+            <p class="text-body-medium text-on-surface">{{ nextAppointment?.title }}</p>
+            <p class="text-body-small text-medium-emphasis">
+              {{ formatDate(nextAppointment?.date) }} · {{ formatTime(nextAppointment?.startTime) }}
             </p>
-            <p class="text-body-small text-on-surface-variant">{{ nextAppointment?.provider }}</p>
+            <p class="text-body-small text-medium-emphasis">{{ nextAppointment?.provider }}</p>
           </div>
-          <v-icon color="on-surface-variant" size="20">mdi-chevron-right</v-icon>
         </div>
       </v-card>
 
@@ -187,6 +190,14 @@ function formatDate(dateStr: string | undefined): string {
   return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })
 }
 
+function formatTime(time: string | undefined): string {
+  if (!time) return ''
+  const [h, m] = time.split(':').map(Number)
+  const period = h >= 12 ? 'PM' : 'AM'
+  const hour = h % 12 || 12
+  return `${hour}:${m.toString().padStart(2, '0')} ${period}`
+}
+
 function formatRelativeTime(timestamp: string): string {
   const now = new Date()
   const then = new Date(timestamp)
@@ -232,4 +243,5 @@ function getNotifColor(type: string): string {
   max-width: 480px;
   margin: 0 auto;
 }
+
 </style>

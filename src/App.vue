@@ -157,6 +157,7 @@ function getNotifColor(type: string): string {
 .app-top-bar {
   background-color: #0D4F3C !important;
   padding-top: 8px !important;
+  padding-bottom: 8px !important;
 }
 
 .app-logo-group {

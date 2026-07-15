@@ -27,7 +27,7 @@
       <!-- Next Appointment -->
       <v-card class="pa-4" @click="$router.push('/appointments')">
         <div class="d-flex align-center justify-space-between mb-3">
-          <p class="text-title-medium text-on-surface">Upcoming Appointments</p>
+          <p class="text-title-medium text-on-surface">Your Next Appointment</p>
           <v-icon color="on-surface-variant" size="20">mdi-chevron-right</v-icon>
         </div>
         <div class="d-flex align-start ga-3">
@@ -79,6 +79,32 @@
                 <v-list-item-subtitle v-if="task.dueDate" class="text-body-small">
                   Due {{ formatDate(task.dueDate) }}
                 </v-list-item-subtitle>
+              </v-list-item>
+            </v-list>
+
+            <!-- Completed Tasks -->
+            <v-btn
+              variant="text"
+              color="primary"
+              size="small"
+              class="mt-3 px-0"
+              @click="showCompleted = !showCompleted"
+            >
+              <v-icon size="16" class="mr-1">{{ showCompleted ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon>
+              {{ showCompleted ? 'Hide' : 'Show' }} completed ({{ completedTasks.length }})
+            </v-btn>
+            <v-list v-if="showCompleted" density="compact" class="pa-0 bg-transparent mt-2">
+              <v-list-item
+                v-for="task in completedTasks"
+                :key="task.id"
+                class="px-0"
+              >
+                <template #prepend>
+                  <v-icon color="success" size="20">
+                    mdi-checkbox-marked-circle
+                  </v-icon>
+                </template>
+                <v-list-item-title class="text-body-medium text-medium-emphasis" style="text-decoration: line-through">{{ task.title }}</v-list-item-title>
               </v-list-item>
             </v-list>
           </v-window-item>
@@ -145,6 +171,12 @@ const nextAppointment = computed(() => data.appointments.upcoming[0])
 const pendingTasks = computed(() =>
   data.tasks.filter(t => t.status === 'pending' || t.status === 'in-progress')
 )
+
+const completedTasks = computed(() =>
+  data.tasks.filter(t => t.status === 'completed')
+)
+
+const showCompleted = ref(false)
 
 const activeGoals = computed(() =>
   data.careGoals.filter(g => g.status === 'in-progress')

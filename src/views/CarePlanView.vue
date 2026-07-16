@@ -62,40 +62,48 @@
           class="pa-4"
           @click="expandedGoal = expandedGoal === goal.id ? null : goal.id"
         >
-          <div class="d-flex align-center ga-3 mb-2">
+          <div class="d-flex align-start ga-3">
             <v-icon
               :color="goal.status === 'completed' ? 'success' : 'primary'"
               size="22"
+              class="mt-1"
             >
               {{ goal.status === 'completed' ? 'mdi-check-circle' : 'mdi-circle-outline' }}
             </v-icon>
             <div class="flex-grow-1">
-              <p class="text-body-large font-weight-medium text-on-surface">{{ goal.title }}</p>
-              <v-chip
-                size="x-small"
-                :color="getCategoryColor(goal.category)"
-                variant="tonal"
-                class="mt-1"
-              >
-                {{ goal.category }}
-              </v-chip>
+              <div class="d-flex align-center justify-space-between mb-3">
+                <p class="text-body-large font-weight-medium text-on-surface">{{ goal.title }}</p>
+                <v-icon color="on-surface-variant" size="20">
+                  {{ expandedGoal === goal.id ? 'mdi-chevron-up' : 'mdi-chevron-down' }}
+                </v-icon>
+              </div>
+              <div class="d-flex align-center justify-space-between mt-1">
+                <v-chip
+                  size="x-small"
+                  :color="getCategoryColor(goal.category)"
+                  variant="tonal"
+                >
+                  {{ goal.category }}
+                </v-chip>
+                <span class="text-label-large" :class="getProgressColor(goal.progress)">
+                  {{ Math.round(goal.progress * 100) }}%
+                </span>
+              </div>
             </div>
-            <span class="text-label-large" :class="getProgressColor(goal.progress)">
-              {{ Math.round(goal.progress * 100) }}%
-            </span>
           </div>
 
           <v-progress-linear
             :model-value="goal.progress * 100"
             :color="goal.progress >= 0.7 ? 'success' : goal.progress >= 0.5 ? 'warning' : 'error'"
             height="6"
-            class="mb-2"
+            class="mt-3 mb-2"
+            style="margin-left: 34px; width: calc(100% - 34px)"
           />
 
           <!-- Expanded milestones -->
           <v-expand-transition>
-            <div v-if="expandedGoal === goal.id" class="mt-3">
-              <p class="text-body-small text-on-surface-variant mb-3">{{ goal.description }}</p>
+            <div v-if="expandedGoal === goal.id" style="margin-left: 34px">
+              <p class="goal-description text-body-small text-on-surface-variant">{{ goal.description }}</p>
               <div class="d-flex flex-column ga-2">
                 <div
                   v-for="(ms, i) in goal.milestones"
@@ -114,7 +122,7 @@
                   >
                     {{ ms.label }}
                   </span>
-                  <span v-if="ms.date" class="text-caption text-on-surface-variant ml-auto">
+                  <span v-if="ms.date" class="text-body-small text-on-surface-variant ml-auto">
                     {{ formatDate(ms.date) }}
                   </span>
                 </div>
@@ -347,5 +355,10 @@ function getDocColor(type: string): string {
 .care-plan-view {
   max-width: 480px;
   margin: 0 auto;
+}
+
+.goal-description {
+  padding-top: 16px !important;
+  padding-bottom: 12px !important;
 }
 </style>

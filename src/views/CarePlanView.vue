@@ -10,52 +10,13 @@
     <div class="px-4">
       <!-- Tab toggle -->
       <v-btn-toggle v-model="tab" mandatory color="primary" density="compact" class="mb-4" rounded="pill">
-        <v-btn value="goals" size="small">Goals</v-btn>
         <v-btn value="tasks" size="small">To Do</v-btn>
+        <v-btn value="goals" size="small">Goals</v-btn>
         <v-btn value="care-info" size="small">Care Info</v-btn>
       </v-btn-toggle>
 
       <!-- Goals -->
       <div v-if="tab === 'goals'" class="d-flex flex-column ga-3 pb-4">
-        <!-- Recent Vitals -->
-        <v-card class="pa-4">
-          <p class="text-title-medium text-on-surface mb-3">Recent Vitals</p>
-
-          <div class="mb-4">
-            <div class="d-flex align-center justify-space-between mb-1">
-              <span class="text-body-small text-on-surface-variant">Weight (today)</span>
-              <span class="text-body-large font-weight-medium text-on-surface">
-                {{ latestWeight }} {{ data.healthTracking.weight.unit }}
-              </span>
-            </div>
-            <div class="d-flex ga-1">
-              <div
-                v-for="(entry, i) in recentWeights"
-                :key="i"
-                class="flex-grow-1 rounded"
-                :style="{
-                  height: '24px',
-                  backgroundColor: entry.value ? 'rgb(var(--v-theme-primary-container))' : 'rgb(var(--v-theme-surface-variant))',
-                }"
-              />
-            </div>
-            <div class="d-flex justify-space-between mt-1">
-              <span class="text-caption text-on-surface-variant">7 days ago</span>
-              <span class="text-caption text-on-surface-variant">Today</span>
-            </div>
-          </div>
-
-          <div>
-            <div class="d-flex align-center justify-space-between mb-1">
-              <span class="text-body-small text-on-surface-variant">Blood Pressure (latest)</span>
-              <span class="text-body-large font-weight-medium" :class="bpColor">
-                {{ latestBP }}
-              </span>
-            </div>
-          </div>
-        </v-card>
-
-        <p class="text-title-medium text-on-surface mt-1">Goals</p>
         <v-card
           v-for="goal in data.careGoals"
           :key="goal.id"
@@ -66,7 +27,7 @@
             <v-icon
               :color="goal.status === 'completed' ? 'success' : 'primary'"
               size="22"
-              class="mt-1"
+              style="margin-top: 2px"
             >
               {{ goal.status === 'completed' ? 'mdi-check-circle' : 'mdi-circle-outline' }}
             </v-icon>
@@ -135,7 +96,7 @@
       <!-- Tasks -->
       <div v-if="tab === 'tasks'" class="d-flex flex-column ga-3 pb-4">
         <!-- Pending / In Progress -->
-        <p class="text-label-large text-on-surface-variant mt-1">Active</p>
+        <p class="text-title-medium text-on-surface mt-1">Active</p>
         <v-card
           v-for="task in activeTasks"
           :key="task.id"
@@ -145,14 +106,14 @@
             <v-icon
               :color="task.priority === 'high' ? 'error' : task.priority === 'medium' ? 'warning' : 'on-surface-variant'"
               size="22"
-              class="mt-1"
+              style="margin-top: 2px"
             >
               {{ task.status === 'in-progress' ? 'mdi-progress-clock' : 'mdi-checkbox-blank-circle-outline' }}
             </v-icon>
             <div class="flex-grow-1">
-              <p class="text-body-large font-weight-medium text-on-surface">{{ task.title }}</p>
+              <p class="card-title text-body-large font-weight-medium text-on-surface">{{ task.title }}</p>
               <p class="text-body-small text-on-surface-variant mt-1">{{ task.description }}</p>
-              <div class="d-flex align-center ga-2 mt-2">
+              <div class="d-flex align-center justify-space-between mt-2">
                 <v-chip size="x-small" :color="getPriorityColor(task.priority)" variant="tonal">
                   {{ task.priority }}
                 </v-chip>
@@ -165,16 +126,16 @@
         </v-card>
 
         <!-- Completed -->
-        <p class="text-label-large text-on-surface-variant mt-3">Completed</p>
+        <p class="text-title-medium text-on-surface mt-3">Completed</p>
         <v-card
           v-for="task in completedTasks"
           :key="task.id"
           class="pa-4"
         >
           <div class="d-flex align-start ga-3">
-            <v-icon color="success" size="22" class="mt-1">mdi-check-circle</v-icon>
+            <v-icon color="success" size="22" style="margin-top: 2px">mdi-check-circle</v-icon>
             <div class="flex-grow-1">
-              <p class="text-body-medium text-on-surface" style="text-decoration: line-through; opacity: 0.6">
+              <p class="card-title text-body-large font-weight-medium text-on-surface" style="text-decoration: line-through; opacity: 0.6">
                 {{ task.title }}
               </p>
               <p class="text-body-small text-on-surface-variant">
@@ -189,7 +150,7 @@
       <div v-if="tab === 'care-info'" class="d-flex flex-column ga-3 pb-4">
         <!-- Care Team -->
         <v-card class="pa-4">
-          <p class="text-title-medium text-on-surface mb-3">Care Team</p>
+          <p class="card-title text-title-medium text-on-surface">Care Team</p>
           <v-list density="compact" class="pa-0 bg-transparent">
             <v-list-item
               v-for="member in data.careTeam"
@@ -206,15 +167,53 @@
               <v-list-item-title class="text-body-medium">{{ member.name }}</v-list-item-title>
               <v-list-item-subtitle class="text-body-small">{{ member.role }}</v-list-item-subtitle>
               <template #append>
-                <v-btn icon="mdi-phone-outline" variant="text" size="x-small" color="primary" />
+                <v-icon color="primary" size="18">mdi-phone-outline</v-icon>
               </template>
             </v-list-item>
           </v-list>
         </v-card>
 
+        <!-- Recent Vitals -->
+        <v-card class="pa-4">
+          <p class="card-title text-title-medium text-on-surface">Recent Vitals</p>
+
+          <div class="mb-4">
+            <div class="d-flex align-center justify-space-between mb-1">
+              <span class="text-body-small text-on-surface-variant">Weight (today)</span>
+              <span class="text-body-large font-weight-medium text-on-surface">
+                {{ latestWeight }} {{ data.healthTracking.weight.unit }}
+              </span>
+            </div>
+            <div class="d-flex ga-1">
+              <div
+                v-for="(entry, i) in recentWeights"
+                :key="i"
+                class="flex-grow-1 rounded"
+                :style="{
+                  height: '24px',
+                  backgroundColor: entry.value ? 'rgb(var(--v-theme-primary-container))' : 'rgb(var(--v-theme-surface-variant))',
+                }"
+              />
+            </div>
+            <div class="d-flex justify-space-between mt-1">
+              <span class="text-caption text-on-surface-variant">7 days ago</span>
+              <span class="text-caption text-on-surface-variant">Today</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="d-flex align-center justify-space-between mb-1">
+              <span class="text-body-small text-on-surface-variant">Blood Pressure (latest)</span>
+              <span class="text-body-large font-weight-medium" :class="bpColor">
+                {{ latestBP }}
+              </span>
+            </div>
+          </div>
+        </v-card>
+
         <!-- Insurance -->
         <v-card class="pa-4">
-          <p class="text-title-medium text-on-surface mb-3">Insurance</p>
+          <p class="card-title text-title-medium text-on-surface">Insurance</p>
           <div class="d-flex align-center ga-3">
             <v-icon color="on-surface-variant" size="20">mdi-shield-check-outline</v-icon>
             <div>
@@ -225,27 +224,31 @@
         </v-card>
 
         <!-- Documents -->
-        <p class="text-label-large text-on-surface-variant mt-1">Documents</p>
-        <v-card
-          v-for="doc in data.documents"
-          :key="doc.id"
-          class="pa-4"
-        >
-          <div class="d-flex align-center ga-3">
-            <v-avatar :color="getDocColor(doc.type) + '-container'" size="40">
-              <v-icon :color="getDocColor(doc.type)" size="20">{{ getDocIcon(doc.type) }}</v-icon>
-            </v-avatar>
-            <div class="flex-grow-1">
-              <div class="d-flex align-center ga-2">
-                <p class="text-body-medium font-weight-medium text-on-surface">{{ doc.title }}</p>
-                <v-icon v-if="!doc.read" color="primary" size="8">mdi-circle</v-icon>
-              </div>
-              <p class="text-body-small text-on-surface-variant">
+        <v-card class="pa-4">
+          <p class="card-title text-title-medium text-on-surface">Documents</p>
+          <v-list density="compact" class="pa-0 bg-transparent">
+            <v-list-item
+              v-for="doc in data.documents"
+              :key="doc.id"
+              class="px-0"
+            >
+              <template #prepend>
+                <v-avatar :color="getDocColor(doc.type) + '-container'" size="36" class="mr-3">
+                  <v-icon :color="getDocColor(doc.type)" size="18">{{ getDocIcon(doc.type) }}</v-icon>
+                </v-avatar>
+              </template>
+              <v-list-item-title class="text-body-medium">
+                {{ doc.title }}
+                <v-icon v-if="!doc.read" color="primary" size="8" class="ml-1">mdi-circle</v-icon>
+              </v-list-item-title>
+              <v-list-item-subtitle class="text-body-small">
                 {{ doc.provider }} · {{ formatDate(doc.date) }}
-              </p>
-            </div>
-            <v-icon color="on-surface-variant" size="18">mdi-download</v-icon>
-          </div>
+              </v-list-item-subtitle>
+              <template #append>
+                <v-icon color="on-surface-variant" size="18">mdi-download</v-icon>
+              </template>
+            </v-list-item>
+          </v-list>
         </v-card>
       </div>
     </div>
@@ -256,7 +259,7 @@
 import { ref, computed } from 'vue'
 import data from '../data/metrics.json'
 
-const tab = ref('goals')
+const tab = ref('tasks')
 const expandedGoal = ref<string | null>(null)
 
 const latestWeight = computed(() => {
@@ -289,8 +292,12 @@ const completedGoals = computed(() =>
   data.careGoals.filter(g => g.status === 'completed').length
 )
 
+const priorityOrder: Record<string, number> = { high: 0, medium: 1, low: 2 }
+
 const activeTasks = computed(() =>
-  data.tasks.filter(t => t.status === 'pending' || t.status === 'in-progress')
+  data.tasks
+    .filter(t => t.status === 'pending' || t.status === 'in-progress')
+    .sort((a, b) => (priorityOrder[a.priority] ?? 3) - (priorityOrder[b.priority] ?? 3))
 )
 
 const completedTasks = computed(() =>
@@ -360,5 +367,9 @@ function getDocColor(type: string): string {
 .goal-description {
   padding-top: 16px !important;
   padding-bottom: 12px !important;
+}
+
+.card-title {
+  margin-bottom: 12px !important;
 }
 </style>

@@ -127,7 +127,7 @@
 
             <!-- Care Team -->
             <v-divider class="my-3" />
-            <div class="mb-3"><p class="text-label-large text-on-surface-variant">Your Care Team</p></div>
+            <div class="mb-3"><p class="text-title-medium text-on-surface">Your Care Team</p></div>
             <div class="d-flex ga-4 overflow-x-auto">
               <div
                 v-for="member in data.careTeam.slice(0, 3)"

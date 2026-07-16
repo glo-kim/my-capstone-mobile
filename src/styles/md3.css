@@ -56,6 +56,11 @@ body {
   padding: 0 !important;
 }
 
+.text-caption {
+  font-size: 12px !important;
+  line-height: 12px !important;
+}
+
 /* List item leading icon gap — match appointment card spacing */
 .v-list-item__prepend {
   margin-inline-end: 12px !important;
